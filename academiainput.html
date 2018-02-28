@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang = "en-US">
+ <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/sketchy/bootstrap.min.css" rel="stylesheet" integrity="sha384-QAdi7HQouHzrMcg66qFdsKV2BCFW/iVhCRvooAkqS4d5rXV8Hlu+X8MY3ao03fgn" crossorigin="anonymous">
+    <meta charset = "UTF-8">
+ <title>textBoxes.html</title>
+
+ 
+
+ </head>
+
+ <body>
+
+<div class="jumbotron" style="width : 50%">
+ <h1 class="display-3">Cadastro na academia</h1>
+ <hr class="my-4">
+    <form>
+            <div class="form-group" style="width : 100%">
+            <input type = "text" class="form-control" id = "nome" placeholder='Nome'/>    
+            <br>
+
+            <input type = 'text' class="form-control" id = 'objetivo' placeholder = 'Objetivo'>
+            <br>
+
+            <label for='dataNascimento'>Nascimento</label>
+            <input type = "date" class="form-control" id="dataNascimento">
+            <br>
+
+            <label for='plano'>Plano</label>
+            <select id='plano' name='plano' class="form-control" required>
+            
+                    <option value=''> - - </option>
+                    <option>Anual</option>
+                    <option>Mensal</option>
+                    <option>Semanal</option>
+
+            </select>
+
+            <br>
+
+            <input type = 'number' class="form-control" id = 'peso' placeholder="Peso" min='10'>
+            <br>
+
+            <input type = 'number' class="form-control" id = 'altura' placeholder='Altura'>
+            <br>
+
+            <input type = 'text' class="form-control" id='telefone' placeholder='Telefone'>
+                
+            <input class="btn btn-primary btn-lg" type = "submit" value = "Enviar" onclick = "cadastrar()"/>
+        </div>
+        </form>
+
+</div>
+
+ <script type = "text/javascript">
+    // from textBoxes.html
+    n = document.getElementById("nome");
+    n.focus();
+
+    function calculaIdade(diaAtual, mesAtual, diaNasc, mesNasc, anoAtual, anoNasc){
+
+        var idadeAno = anoAtual - anoNasc;
+
+        if (mesNasc > mesAtual || (mesAtual == mesNasc && diaAtual < diaNasc)){
+            idadeAno = idadeAno - 1
+        }
+        
+        return idadeAno
+
+    }
+    function cadastrar(){
+        var nome =  document.getElementById("nome").value;
+        var matricula = Math.round(Math.random()*100000);
+        var plano = document.getElementById('plano').value;
+        var objetivo = document.getElementById('objetivo').value;
+        var peso = document.getElementById('peso').value;
+        var altura = document.getElementById('altura').value.replace(",",".");
+        var telefone = document.getElementById('telefone').value;
+
+        var dataNascimento = document.getElementById("dataNascimento").value;
+        var data = dataNascimento.split('-')
+
+        var diaNasc = data[2];
+        var mesNasc = data[1];
+        var anoNasc = data[0];
+
+        var dataAtual = new Date();
+
+        var anoAtual = dataAtual.getFullYear();
+        var mesAtual = dataAtual.getMonth()+1;
+        var diaAtual = dataAtual.getDay();
+        var idade = calculaIdade(diaAtual, mesAtual, diaNasc, mesNasc, anoAtual, anoNasc);
+
+        document.write("Nome : " + nome);
+        document.write("<br>Matricula : " + matricula );
+        document.write("<br>Nascimento : " + diaNasc + "/" + mesNasc + "/" + anoNasc);
+        document.write("<br>Objetivo : " + objetivo );
+        document.write("<br>Plano : " + plano );
+        document.write("<br>Peso : " + peso );
+        document.write("<br>Altura : " + altura );
+        //document.write("<br>Telefone : " + telefone );
+        document.write("<br>Telefone : " + "(" + telefone.substring(0,2) + ")" + telefone.substring(2,7) + '-' + telefone.substring(7) );
+        document.write("<br>Idade : " + idade + " anos");
+    }
+</script>
+ </body>
+</html>

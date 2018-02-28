@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+
+<script>
+
+    function pulaLinha(){
+        document.write("<br>");
+    }
+
+    var idadePessoa1 = parseInt(prompt("digite a idade da primeira pessoa"));
+    var idadePessoa2 = parseInt(prompt("digite a idade da segunda pessoa"));
+    var idadePessoa3 = parseInt(prompt("digite a idade da terceira pessoa"));
+    var somaDasIdades = idadePessoa1 + idadePessoa2 + idadePessoa3;
+    var mediaArredondada = Math.round(somaDasIdades/3);
+    var mediaExata = somaDasIdades/3;
+
+    document.write("A soma das idades é " + somaDasIdades);
+    pulaLinha();
+    document.write("A media das idades é " + mediaArredondada);
+
+</script>
